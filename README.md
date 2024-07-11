@@ -2,7 +2,7 @@
 
 Este projeto foi desenvolvido para fins de estudo e prática da utilização de uma API para consulta de CEP.
 
-![Captura de Tela]()
+![Captura de Tela](Formulario_cep.png)
 
 ## Funcionalidades
 
