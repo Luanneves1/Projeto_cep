@@ -4,40 +4,34 @@ namespace App\WebService;
 
 class ViaCEP
 {
-
     /**
      * Método responsável por consultar um cep no VIACEP
      * 
      * @param string $cep
      * @return array
-     * 
      */
-
     public static function consultarCEP($cep)
     {
+        // Inicia o CURL
+        $curl = curl_init();
 
-        //INICIA O CURL
-$curl = curl_init();
-
-//CONFIGURAÇÃO DO CURL
-curl_setopt_array($curl,[CURLOPT_URL => 'https://viacep.com.br/ws/'.$cep.'/json/',
-CURLOPT_RETURNTRANSFER => true,
-CURLOPT_CUSTOMREQUEST => 'GET'
-]);
+        // Configuração do CURL
+        curl_setopt_array($curl, [
+            CURLOPT_URL => 'https://viacep.com.br/ws/'.$cep.'/json/',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CUSTOMREQUEST => 'GET'
+        ]);
         
-//Response
-$response = curl_exec($curl);
+        // Response
+        $response = curl_exec($curl);
 
-//fechar a conexão
-curl_close($curl);
+        // Fechar a conexão
+        curl_close($curl);
 
-//Converter o JSON para ARRAY
+        // Converter o JSON para ARRAY
+        $arrResponse = json_decode($response, true);
 
-$arrResponse = json_decode($response,true);
-
-//RETORNA O CONTEUDO EM ARRAY
-
-return isset($arrResponse['cep'])? $arrResponse : null;
-
+        // Retorna o conteúdo em ARRAY
+        return isset($arrResponse['cep']) ? $arrResponse : null;
     }
 }
